@@ -1,0 +1,60 @@
+Foto del sito — salva ogni immagine con questo nome (o cambia il src in index.html)
+
+foto/alex-mattino-01.jpg   Alex vicino alla finestra mentre si abbottona la camicia (verticale)
+foto/alex-mattino-02.jpg   Dettaglio: i gemelli sul polsino (quadrata)
+foto/alex-mattino-03.jpg   Alex con i testimoni, la cravatta sistemata (orizzontale)
+foto/alex-mattino-04.jpg   La giacca appesa allo stipite della porta (verticale stretta)
+foto/alex-mattino-05.jpg   Ritratto di Alex, pronto (mostrato in bianco e nero)
+foto/cena-01.jpg            La tavola vista dall'alto, verde e candele
+foto/cena-02.jpg            Fiori rosa e bianchi al centro della tavola
+foto/cena-03.jpg            Un piatto servito durante la cena
+foto/cena-04.jpg            Mani e calici che si toccano in un brindisi
+foto/cena-05.jpg            Un ospite in piedi con il calice alzato durante i discorsi
+foto/cena-06.jpg            La lunga tavola all'aperto affacciata sull'acqua
+foto/cerimonia-01.jpg       La navata all'aperto tra file di sedie e fiori bianchi
+foto/cerimonia-02.jpg       Le mani di Elena e Alex che si stringono
+foto/cerimonia-03.jpg       Gli anelli sulle mani intrecciate
+foto/cerimonia-04.jpg       Fotogramma A19
+foto/cerimonia-05.jpg       Fotogramma A15
+foto/cerimonia-06.jpg       Fotogramma A20
+foto/cerimonia-07.jpg       Il primo bacio nel giardino
+foto/sposa-cerimonia.jpg     Elena arriva alla cerimonia (capitolo 02, "La sposa")
+foto/fine-01.jpg            Elena e Alex camminano insieme su una spiaggia, in bianco e nero
+foto/indice-01.jpg          Fotogramma A01
+foto/mattino-01.jpg         Elena mentre si prepara, il bouquet tra le mani, nella luce bassa della stanza
+foto/mattino-02.jpg         Le scarpe della sposa appoggiate davanti a una piccola chiesa bianca
+foto/mattino-03.jpg         Dettaglio: un orecchino appena indossato
+foto/mattino-04.jpg         Elena in bianco e nero, il velo sollevato dal vento
+foto/notte-01.jpg           Gli ospiti ballano sotto una tenda decorata con bandierine
+foto/notte-02.jpg           Stelline accese nel buio
+foto/notte-03.jpg           La pista da ballo vista dall'alto, ombre lunghe
+foto/notte-04.jpg           Fotogramma notturno 1
+foto/notte-05.jpg           Fotogramma notturno 2
+foto/notte-06.jpg           Fotogramma notturno 3
+foto/persone-01.jpg         Un'ospite ride con un bicchiere in mano
+foto/persone-02.jpg         Due amici sorridono all'aperto
+foto/persone-03.jpg         Amici a tavola che ridono
+foto/persone-04.jpg         Un gruppo di amici seduti insieme
+foto/persone-05.jpg         Ospiti a tavola tra piatti condivisi
+foto/persone-06.jpg         Amici che ballano e ridono
+foto/provino-01.jpg         Fotogramma A05
+foto/provino-02.jpg         Fotogramma A06
+foto/provino-03.jpg         Fotogramma A07
+foto/provino-04.jpg         Fotogramma A08
+foto/provino-05.jpg         Fotogramma A09
+foto/provino-06.jpg         Fotogramma A10
+foto/provino-07.jpg         Fotogramma A12
+foto/provino-08.jpg         Fotogramma A13
+foto/provino-09.jpg         Fotogramma A14
+foto/provino-10.jpg         Fotogramma A16
+foto/provino-11.jpg         Fotogramma A17
+foto/provino-12.jpg         Fotogramma A21
+foto/provino-13.jpg         Fotogramma A22
+foto/provino-notte-01.jpg   Fotogramma F03
+foto/sposati-01.jpg         Il bacio tra gli ospiti che lanciano il riso
+foto/sposati-02.jpg         Gli sposi accanto a un furgoncino d'epoca
+foto/sposati-03.jpg         Fotogramma A11
+foto/sposati-04.jpg         Elena e Alex abbracciati, lui sorride
+foto/sposati-05.jpg         Gli sposi in un campo al tramonto
+foto/sposati-06.jpg         Gli sposi escono sotto un portico di legno
+foto/sposati-07.jpg         Il velo mosso dal vento, in riva al mare
