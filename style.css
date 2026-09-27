@@ -86,43 +86,6 @@ em { font-style: italic; }
   pointer-events: none;
 }
 
-.ghost {
-  position: absolute;
-  z-index: -1;
-  top: calc(var(--space) - .12em);
-  right: calc(var(--gutter) - .06em);
-  font-family: var(--serif);
-  font-weight: 300;
-  font-size: clamp(200px, 28vw, 440px);
-  line-height: .8;
-  letter-spacing: -.04em;
-  font-variant-numeric: lining-nums;
-  color: var(--fg);
-  opacity: .05;
-  pointer-events: none;
-  user-select: none;
-}
-
-.margin-note {
-  position: absolute;
-  left: calc(var(--gutter) / 2 - 6px);
-  top: 50%;
-  writing-mode: vertical-rl;
-  transform: translateY(-50%) rotate(180deg);
-  font-size: 9px;
-  color: var(--soft);
-  white-space: nowrap;
-}
-.margin-note::after {
-  content: "";
-  display: inline-block;
-  width: 1px;
-  height: 56px;
-  margin-top: 14px;
-  background: currentColor;
-  opacity: .5;
-}
-
 /* --------------------------------------------------------------------------
    Tipografia comune
    -------------------------------------------------------------------------- */
@@ -136,13 +99,6 @@ em { font-style: italic; }
   text-transform: uppercase;
 }
 
-.stamp {
-  display: block;
-  margin-top: 8px;
-  color: var(--soft);
-  font-variant-numeric: tabular-nums;
-}
-
 /* Intestazione di capitolo */
 .chapter { padding-top: var(--space); }
 .chead {
@@ -153,13 +109,6 @@ em { font-style: italic; }
   padding-bottom: 16px;
   border-bottom: 1px solid var(--hair);
 }
-.chead__num {
-  font-family: var(--serif);
-  font-weight: 300;
-  font-size: clamp(44px, 4.2vw, 66px);
-  line-height: .78;
-  font-variant-numeric: lining-nums;
-}
 .chead__body { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; flex: 1; }
 .chead__title {
   font-family: var(--serif);
@@ -168,7 +117,6 @@ em { font-style: italic; }
   font-size: clamp(30px, 3.2vw, 50px);
   line-height: 1;
 }
-.chead__range { color: var(--soft); font-variant-numeric: tabular-nums; }
 
 /* --------------------------------------------------------------------------
    Fotografie, stampe, carta
@@ -184,8 +132,6 @@ em { font-style: italic; }
   background: var(--sheet);
   box-shadow: var(--shadow);
 }
-.mount .stamp { margin-top: 7px; color: var(--muted); }
-
 .paper {
   position: relative;
   display: flex;
@@ -265,15 +211,18 @@ em { font-style: italic; }
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: calc(var(--edge) + 18px) calc(var(--edge) + 22px);
+  padding: calc(var(--edge) + 26px) calc(var(--edge) + 32px);
   color: var(--ink);
-  transition: color .8s var(--ease);
+  opacity: .82;
+  transition: color .8s var(--ease), opacity .8s var(--ease), text-shadow .8s var(--ease);
   pointer-events: none;
 }
 .masthead > * { pointer-events: auto; }
-.masthead[data-tone="light"] { color: var(--ivory); }
-.masthead__mark { font-family: var(--serif); font-size: 17px; line-height: 1; letter-spacing: .04em; }
-.masthead__meta { display: flex; gap: 22px; line-height: 1; }
+.masthead[data-tone="light"] { color: var(--ivory); opacity: .96; text-shadow: 0 0 18px rgba(27, 25, 23, .22); }
+/* quasi invisibile: solo le iniziali e la data, in serif piccolo */
+.masthead__mark,
+.masthead__date { font-family: var(--serif); font-size: 14px; line-height: 1; letter-spacing: .06em; }
+.masthead__date { font-variant-numeric: lining-nums; }
 
 /* --------------------------------------------------------------------------
    Apertura
@@ -302,44 +251,40 @@ em { font-style: italic; }
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(27, 25, 23, .1);
+  /* ombra morbida in alto per leggere l'intestazione, sopra il velo leggero di sempre */
+  background:
+    linear-gradient(180deg,
+      rgba(27, 25, 23, .34) 0,
+      rgba(27, 25, 23, .20) 7%,
+      rgba(27, 25, 23, .08) 15%,
+      rgba(27, 25, 23, 0) 26%),
+    rgba(27, 25, 23, .1);
   pointer-events: none;
 }
-.opening__caption,
-.opening__edge {
+.opening__caption {
   position: absolute;
   z-index: 1;
   bottom: clamp(24px, 4.5vh, 48px);
   color: var(--ivory);
 }
 .opening__caption { left: clamp(22px, 3vw, 48px); }
-.opening__edge { right: clamp(22px, 3vw, 48px); font-size: 9px; opacity: .78; }
 .opening__names { font-size: 12px; font-weight: 500; letter-spacing: .34em; }
 .opening__caption p { margin-top: 4px; opacity: .85; }
 
 .js .opening__frame { opacity: 0; transition: opacity 1.8s var(--ease); }
-.js .opening__caption > *,
-.js .opening__edge { opacity: 0; transform: translateY(10px); transition: opacity 1.4s var(--ease) .9s, transform 1.4s var(--ease) .9s; }
+.js .opening__caption > * { opacity: 0; transform: translateY(10px); transition: opacity 1.4s var(--ease) .9s, transform 1.4s var(--ease) .9s; }
 .js .is-ready .opening__frame { opacity: 1; }
 .js .is-ready .opening__caption > * { opacity: 1; transform: none; }
-.js .is-ready .opening__edge { opacity: .78; transform: none; }
 
 /* Indice dei cinque momenti */
 .moments { padding: clamp(64px, 7vw, 110px) var(--gutter) clamp(24px, 3vw, 48px); }
-.moments__head {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 24px;
-  margin-bottom: clamp(72px, 7vw, 110px);
-}
-.moments__kicker { color: var(--soft); }
+.moments__head { margin-bottom: clamp(64px, 6.5vw, 104px); }
 .moments__intro {
+  max-width: 22ch;
   font-family: var(--serif);
   font-weight: 300;
-  font-size: clamp(22px, 2vw, 30px);
-  line-height: 1.2;
-  text-align: right;
+  font-size: clamp(26px, 2.5vw, 38px);
+  line-height: 1.15;
 }
 
 .index {
@@ -350,7 +295,7 @@ em { font-style: italic; }
 .index__link {
   position: relative;
   display: grid;
-  padding: 16px 20px 6px 0;
+  padding: 26px 20px 6px 0;
 }
 .index__link::before {
   content: "";
@@ -373,17 +318,9 @@ em { font-style: italic; }
   transform-origin: left;
   transition: transform .9s var(--slow);
 }
-.index__time { color: var(--soft); font-variant-numeric: tabular-nums; }
-.index__num {
-  margin-top: 20px;
-  font-family: var(--serif);
-  font-size: 18px;
-  font-weight: 300;
-  color: var(--soft);
-}
 .index__name {
   font-family: var(--serif);
-  font-size: clamp(22px, 2vw, 30px);
+  font-size: clamp(24px, 2.2vw, 34px);
   font-style: italic;
   font-weight: 300;
   line-height: 1.1;
@@ -409,7 +346,7 @@ em { font-style: italic; }
 .index__link:focus-visible .index__peek { clip-path: inset(0 0 0 0); }
 
 /* --------------------------------------------------------------------------
-   01 · Il mattino — scrivania (composizione a coordinate)
+   Il mattino — composizione a coordinate
    -------------------------------------------------------------------------- */
 
 .desk { padding-bottom: var(--space); }
@@ -420,18 +357,7 @@ em { font-style: italic; }
 }
 .desk__surface > * { position: absolute; }
 
-/* lei prevale a sinistra, lui a destra: i due racconti si incrociano al centro */
-.desk__who { color: var(--soft); white-space: nowrap; }
-.desk__who--her { left: 32%; top: 0; }
-.desk__who--him { left: 66%; top: 5.4%; }
-
-/* il filo che lega i due racconti, dietro al biglietto */
-.desk__thread {
-  left: 14%; right: 12%; top: 46.5%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(28, 26, 24, .28) 18%, rgba(28, 26, 24, .28) 82%, transparent);
-}
-
+/* lei prevale a sinistra, lui a destra; al centro il dettaglio dell’abito */
 .desk__e-main     { left: 0;     top: 0;   width: 30%; z-index: 1; }
 .desk__e-main .ph { aspect-ratio: 4/5; }
 .desk__e-wide     { left: 32%;   top: 4%;  width: 30%; z-index: 1; }
@@ -445,7 +371,6 @@ em { font-style: italic; }
 .paper--card {
   --rot: -2deg;
   aspect-ratio: 7/5;
-  gap: 10px;
   padding: 10%;
 }
 .paper__script {
@@ -455,36 +380,27 @@ em { font-style: italic; }
   font-size: clamp(26px, 2.5vw, 40px);
   line-height: 1;
 }
-.paper__rule { width: 28px; height: 1px; background: rgba(28, 26, 24, .35); }
-.paper__small { font-size: 8px; color: var(--muted); }
 
 .desk__e-detail   { left: 22%;   top: 41%; width: 15%; z-index: 3; }
 .desk__e-detail .ph { aspect-ratio: 4/5; }
-.desk__e-father   { left: 3%;    top: 51%; width: 17%; z-index: 2; }
+.desk__e-father   { left: 3%;    top: 54%; width: 17%; z-index: 2; }
 .desk__e-father .ph { aspect-ratio: 3/4; }
 
 .desk__a-wide     { left: 33%;   top: 60%; width: 31%; z-index: 2; }
 .desk__a-wide .ph { aspect-ratio: 3/2; }
 .desk__a-jacket   { left: 86%;   top: 64%; width: 14%; z-index: 2; }
 .desk__a-jacket .ph { aspect-ratio: 2/3; }
-.desk__a-portrait { left: 67.5%; top: 70%; width: 15%; z-index: 3; }
+.desk__a-portrait { left: 67.5%; top: 74%; width: 15%; z-index: 3; }
 .desk__a-portrait .ph { aspect-ratio: 4/5; }
 .desk__a-portrait img { filter: grayscale(1) contrast(1.05); }
 
-.desk__words      { left: 3%;    top: 84.5%; width: 28%; }
-.desk__line {
-  font-family: var(--serif);
-  font-style: italic;
-  font-weight: 300;
-  font-size: clamp(22px, 2vw, 30px);
-  line-height: 1.2;
-}
-.desk__note {
+/* annotazione sommessa, non racconto */
+.desk__cap {
   margin-top: 12px;
   font-family: var(--serif);
   font-style: italic;
-  font-size: clamp(15px, 1.15vw, 18px);
-  line-height: 1.35;
+  font-size: clamp(14px, 1.05vw, 16px);
+  line-height: 1.3;
   color: var(--soft);
 }
 
@@ -516,7 +432,6 @@ em { font-style: italic; }
   font-size: clamp(28px, 2.6vw, 40px);
   line-height: 1;
 }
-.sheet__meta { color: var(--soft); }
 .sheet__note {
   font-family: var(--serif);
   font-style: italic;
@@ -531,14 +446,6 @@ em { font-style: italic; }
 .frame { position: relative; }
 .frame__img { aspect-ratio: 3/2; overflow: hidden; background: rgba(28, 26, 24, .08); }
 .frame__img img { width: 100%; height: 100%; object-fit: cover; }
-.frame__code {
-  margin-top: 5px;
-  font-size: 8.5px;
-  font-weight: 600;
-  letter-spacing: .14em;
-  color: var(--muted);
-  font-variant-numeric: tabular-nums;
-}
 @media (hover: hover) {
   .sheet__grid .frame { transition: opacity .6s var(--ease), transform .6s var(--ease), clip-path 1s var(--slow); }
   .sheet__grid:hover .frame { opacity: .5; }
@@ -585,13 +492,11 @@ em { font-style: italic; }
   height: 74vh;
   align-self: start;
 }
-.story__stage { position: relative; height: calc(100% - 30px); overflow: hidden; background: rgba(28, 26, 24, .07); }
+.story__stage { position: relative; height: 100%; overflow: hidden; background: rgba(28, 26, 24, .07); }
 .story__shot { position: absolute; inset: 0; opacity: 0; transition: opacity 1.6s var(--ease); }
 .story__shot img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.02); transition: transform 3s var(--ease); }
 .story__shot.is-active { opacity: 1; }
 .story__shot.is-active img { transform: scale(1); }
-.story__counter { margin-top: 12px; color: var(--soft); font-variant-numeric: tabular-nums; }
-
 .story__steps { grid-column: 8 / 12; border-left: 1px solid var(--hair); }
 .story__step {
   min-height: 60vh;
@@ -657,7 +562,6 @@ em { font-style: italic; }
   font-size: clamp(30px, 2.8vw, 44px);
   line-height: 1.05;
 }
-.seq__lead .label { display: block; margin-top: 22px; color: var(--soft); }
 .seq__frame { flex: none; position: relative; }
 .seq__frame--tall .ph { height: 72vh; aspect-ratio: 2/3; }
 .seq__frame--wide .ph { height: 50vh; aspect-ratio: 3/2; }
@@ -667,50 +571,37 @@ em { font-style: italic; }
 .seq__frame--detail { align-self: flex-start; margin: 5vh -56px 0 -64px; z-index: 2; }
 .seq__frame:nth-child(6) { align-self: flex-start; margin-top: 2vh; }
 .seq__frame--mid { align-self: flex-end; margin-left: -40px; z-index: 1; }
-.seq__frame figcaption {
-  display: flex;
-  gap: 14px;
-  margin-top: 8px;
-  color: var(--soft);
-  font-variant-numeric: tabular-nums;
-}
-.seq__frame figcaption time { color: var(--fg); }
-.seq__frame.mount figcaption { color: var(--muted); }
-.seq__frame.mount figcaption time { color: var(--ink); }
-
 /* --------------------------------------------------------------------------
-   03.5 · Il film — pausa cinematografica, video caricato al clic
+   Il film — prologo, video caricato al clic
    -------------------------------------------------------------------------- */
 
 .film {
-  --hair: rgba(244, 239, 231, .16);
-  padding: clamp(88px, 9vw, 150px) 0 clamp(96px, 10vw, 164px);
+  --hair: rgba(244, 239, 231, .14);
+  padding: clamp(120px, 13vw, 220px) 0 clamp(128px, 14vw, 232px);
   color: #F4EFE7;
 }
-.film__inner { width: min(90vw, 1560px); margin: 0 auto; }
+/* colonna stretta: il film è un intermezzo, non una vetrina a tutto schermo */
+.film__inner { width: min(100% - 2 * var(--gutter), 74vw, 1140px); margin: 0 auto; }
 
 .film__head {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: end;
-  column-gap: 32px;
-  margin-bottom: clamp(28px, 3vw, 48px);
+  text-align: center;
+  margin-bottom: clamp(44px, 4.6vw, 72px);
 }
-.film__label { grid-column: 1 / -1; margin-bottom: clamp(18px, 2vw, 28px); color: rgba(244, 239, 231, .62); }
+.film__label { margin-bottom: clamp(18px, 1.8vw, 26px); color: rgba(244, 239, 231, .56); }
 .film__title {
   font-family: var(--serif);
   font-weight: 300;
-  font-size: clamp(40px, 5vw, 84px);
-  line-height: .98;
-  letter-spacing: -.01em;
+  font-size: clamp(38px, 4.2vw, 64px);
+  line-height: 1.04;
+  letter-spacing: -.005em;
 }
-.film__title em { font-style: italic; }
 .film__sub {
+  margin-top: clamp(10px, 1vw, 16px);
   font-family: var(--serif);
   font-style: italic;
-  font-size: clamp(16px, 1.3vw, 20px);
+  font-weight: 300;
+  font-size: clamp(17px, 1.3vw, 21px);
   color: rgba(244, 239, 231, .62);
-  padding-bottom: .4em;
 }
 
 .film__player {
@@ -729,7 +620,7 @@ em { font-style: italic; }
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(27, 25, 23, .10), rgba(27, 25, 23, .34));
+  background: linear-gradient(180deg, rgba(27, 25, 23, .16), rgba(27, 25, 23, .38));
   pointer-events: none;
   transition: opacity .8s var(--ease);
 }
@@ -745,11 +636,13 @@ em { font-style: italic; }
 .film__circle {
   display: grid;
   place-items: center;
-  width: clamp(72px, 6.4vw, 104px);
+  width: clamp(64px, 5vw, 84px);
   aspect-ratio: 1;
-  border: 1px solid rgba(244, 239, 231, .78);
+  border: 1px solid rgba(244, 239, 231, .72);
   border-radius: 50%;
-  background: rgba(27, 25, 23, .12);
+  background: rgba(27, 25, 23, .24);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
   transition: background .6s var(--ease), transform .6s var(--ease), border-color .6s var(--ease);
 }
 .film__circle svg { margin-left: 3px; }
@@ -772,16 +665,31 @@ em { font-style: italic; }
   justify-content: space-between;
   align-items: baseline;
   gap: 16px;
-  margin-top: 14px;
-  padding-top: 12px;
+  margin-top: 16px;
+  padding-top: 14px;
   border-top: 1px solid var(--hair);
 }
-.film__names { font-family: var(--serif); font-style: italic; font-size: 19px; line-height: 1.2; }
+.film__names { font-family: var(--serif); font-style: italic; font-size: 17px; line-height: 1.2; color: rgba(244, 239, 231, .82); }
 .film__meta { color: rgba(244, 239, 231, .62); font-variant-numeric: tabular-nums; }
 
 /* rivelazione più sommessa del solito: il riquadro si apre dai bordi */
 .js .film .rv .ph { clip-path: inset(7% 5% 7% 5%); transition: clip-path 1.6s var(--slow); }
 .js .film .rv.is-in .ph { clip-path: inset(0 0 0 0); }
+
+/* Respiro dopo il film: breve pausa in cui il fondo torna all'avorio */
+.breath {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: clamp(220px, 36vh, 400px);
+}
+.breath__line {
+  width: 1px;
+  height: clamp(56px, 8vh, 88px);
+  background: var(--fg);
+  opacity: .28;
+  transition: background-color .6s var(--ease);
+}
 
 /* --------------------------------------------------------------------------
    Persone che amiamo
@@ -802,7 +710,6 @@ em { font-style: italic; }
   font-size: clamp(30px, 3.2vw, 50px);
   line-height: 1;
 }
-.people__meta { color: var(--soft); }
 
 .people__mosaic {
   display: grid;
@@ -829,9 +736,7 @@ em { font-style: italic; }
   transform: translateY(6px);
   transition: opacity .7s var(--ease), transform .7s var(--ease);
 }
-.person__tag span { color: var(--fg); }
 .person.mount .person__tag { color: var(--muted); }
-.person.mount .person__tag span { color: var(--ink); }
 .person:hover .person__tag,
 .person:focus-within .person__tag { opacity: 1; transform: none; }
 @media (hover: none) { .person__tag { opacity: 1; transform: none; } }
@@ -878,8 +783,6 @@ em { font-style: italic; }
 
 .table__wide { margin-top: clamp(40px, 4vw, 64px); }
 .table__wide .ph { aspect-ratio: 21/8; }
-.table__wide .stamp { padding-left: var(--gutter); }
-
 /* --------------------------------------------------------------------------
    Una voce dalla giornata
    -------------------------------------------------------------------------- */
@@ -931,7 +834,6 @@ em { font-style: italic; }
    -------------------------------------------------------------------------- */
 
 .night { --hair: rgba(239, 232, 220, .16); }
-.night .ghost { opacity: .06; }
 .night .ph,
 .sheet--last .frame__img { background: rgba(239, 232, 220, .05); }
 .js .night .rv .ph { transition-duration: 1s; }
@@ -962,14 +864,9 @@ em { font-style: italic; }
 
 .night__full { margin-top: clamp(48px, 5vw, 80px); }
 .night__full .ph { height: 90vh; }
-.night__full .stamp,
-.night__hero .stamp { padding-left: var(--gutter); }
-
 .strip { display: flex; gap: 6px; padding-top: 6px; }
 .strip__frame { flex: 1; }
 .strip__frame img { width: 100%; aspect-ratio: 3/2; object-fit: cover; }
-.strip .stamp { padding-left: var(--gutter); }
-
 /* --------------------------------------------------------------------------
    La canzone
    -------------------------------------------------------------------------- */
@@ -1011,8 +908,6 @@ em { font-style: italic; }
 .sheet__grid--loose .frame:nth-child(3n + 2) { margin-top: 28px; }
 .sheet__grid--loose .frame:last-child { grid-column: 4 / 7; margin-top: 12px; }
 .sheet__grid--loose .frame:last-child .frame__img { aspect-ratio: 3/2; }
-.sheet--last .frame__code { color: var(--soft); }
-
 /* --------------------------------------------------------------------------
    Finale
    -------------------------------------------------------------------------- */
@@ -1040,7 +935,6 @@ em { font-style: italic; }
 @media (max-width: 1080px) {
   .sheet__grid { grid-template-columns: repeat(6, 1fr); }
   .desk__surface { aspect-ratio: 100 / 92; }
-  .desk__words { top: 82%; width: 30%; }
   .rite__quote { grid-column: 9 / 13; }
   .song__sleeve { grid-column: 1 / 7; }
   .song__credits { grid-column: 8 / 13; }
@@ -1053,35 +947,28 @@ em { font-style: italic; }
 @media (max-width: 760px) {
   :root { --edge: 8px; --gutter: 20px; --space: 72px; --gap: 14px; }
 
-  .masthead { padding: 22px; }
-  .masthead__meta { gap: 16px; }
-  .ghost { font-size: 180px; top: calc(var(--space) - 30px); }
-  .margin-note { display: none; }
+  .masthead { padding: 24px 22px; }
   .chead__body { flex-direction: column; gap: 4px; }
 
   .opening { height: 90svh; min-height: 500px; }
   .opening__img { object-position: 84% 50%; }
   .opening__caption { left: 18px; bottom: 22px; }
-  .opening__edge { display: none; }
 
-  .moments__head { flex-direction: column; margin-bottom: 40px; }
-  .moments__intro { text-align: left; }
+  .moments__head { margin-bottom: 44px; }
+  .moments__intro { font-size: 26px; }
   .index { grid-template-columns: 1fr; border-top: 0; border-left: 1px solid var(--hair); }
-  .index__link { grid-template-columns: 52px 1fr; padding: 12px 0 12px 22px; column-gap: 6px; }
-  .index__link::before { top: 20px; left: -5px; width: 9px; height: 1px; }
+  .index__link { padding: 15px 0 15px 26px; }
+  .index__link::before { top: 50%; left: -3px; width: 5px; height: 1px; }
   .index__line { top: 0; left: -1px; width: 1px; height: 100%; transform: scaleY(0); transform-origin: top; }
-  .index__time { grid-column: 1; grid-row: 1 / 3; padding-top: 6px; }
-  .index__num { grid-column: 2; margin-top: 0; font-size: 15px; }
-  .index__name { grid-column: 2; font-size: 26px; }
+  .index__name { font-size: 30px; }
   .index__peek { display: none; }
 
   /* mattino: i due racconti si alternano, con sovrapposizioni leggere */
   .desk__surface { aspect-ratio: auto; margin: 0; padding: 0 var(--gutter); display: flex; flex-direction: column; }
   .desk__surface > * { position: relative; left: auto; top: auto; }
-  .desk__who, .desk__thread { display: none; }
   .desk__e-main     { order: 1;  width: 78%; }
   .desk__a-main     { order: 2;  width: 64%; margin: -64px 0 0 auto; }
-  .desk__e-wide     { order: 3;  width: 84%; margin-top: -36px; }
+  .desk__e-wide     { order: 3;  width: 84%; margin-top: 18px; }
   .desk__a-detail   { order: 4;  width: 36%; margin: -44px 0 0 auto; }
   .desk__card       { order: 5;  width: 70%; margin: 6px auto 0; }
   .desk__e-detail   { order: 6;  width: 40%; margin: -18px 0 0 2%; }
@@ -1089,7 +976,6 @@ em { font-style: italic; }
   .desk__e-father   { order: 8;  width: 50%; margin-top: -26px; }
   .desk__a-portrait { order: 9;  width: 46%; margin: -110px 0 0 auto; }
   .desk__a-jacket   { order: 10; width: 34%; margin: -20px 0 0 18%; }
-  .desk__words      { order: 11; width: 100%; margin-top: 28px; }
 
   .sheet { padding-inline: 12px; }
   .sheet__paper { padding: 14px 12px; }
@@ -1115,23 +1001,34 @@ em { font-style: italic; }
   .story__step:nth-child(even) .story__mobile img { aspect-ratio: 3/4; }
   .story__step p { font-size: 26px; }
 
-  .seq .chead { margin-bottom: 0; }
-  .seq__sticky { height: 100vh; height: 100svh; }
-  .seq__track { height: 76vh; height: 76svh; gap: 14px; }
-  .seq__lead { width: 62vw; font-size: 30px; margin-right: 6px; }
-  .seq__frame--tall .ph { height: 62vh; height: 62svh; }
-  .seq__frame--wide .ph { height: 34vh; height: 34svh; }
-  .seq__frame--mid .ph { height: 48vh; height: 48svh; }
-  .seq__frame--detail .ph { height: 22vh; height: 22svh; }
-  .seq__frame--detail { margin: 4vh -24px 0 -28px; }
-  .seq__frame--mid { margin-left: -20px; }
+  /* la citazione tra cerimonia e sposi non c'è su telefono */
+  .vow { display: none; }
 
-  .film { padding: 72px 0 80px; }
-  .film__inner { width: calc(100% - 16px); }
-  .film__head { grid-template-columns: 1fr; padding: 0 12px; }
-  .film__sub { padding: 14px 0 0; }
-  .film__circle { width: 76px; }
-  .film__caption { flex-direction: column; gap: 2px; padding: 12px 12px 0; }
+  /* appena sposati: niente pellicola orizzontale, una sequenza verticale asimmetrica */
+  .seq { padding-bottom: 56px; }
+  .seq .chead { margin-bottom: 22px; }
+  .seq__sticky { position: static; height: auto; overflow: visible; display: block; }
+  .seq__track { display: flex; flex-direction: column; align-items: flex-start; gap: 0; height: auto; padding: 0 var(--gutter); transform: none !important; }
+  .seq__lead { display: none; }
+  .seq__frame .ph { height: auto; }
+  .seq__track > .seq__frame { align-self: flex-start; margin: 14px 0 0; }
+  .seq__track > .seq__frame:nth-of-type(1) { width: calc(100% + var(--gutter) - 8px); margin: 0 calc(8px - var(--gutter)); }
+  .seq__track > .seq__frame:nth-of-type(1) .ph { aspect-ratio: 4/5; }
+  .seq__track > .seq__frame:nth-of-type(2) { width: 78%; align-self: flex-end; }
+  .seq__track > .seq__frame:nth-of-type(3) { width: 40%; margin: -44px 0 0 6%; z-index: 2; }
+  .seq__track > .seq__frame:nth-of-type(4) { width: 70%; margin-top: 18px; }
+  .seq__track > .seq__frame:nth-of-type(5) { width: 86%; align-self: flex-end; }
+  .seq__track > .seq__frame:nth-of-type(6) { width: 56%; margin-left: 8%; }
+  .seq__track > .seq__frame:nth-of-type(7) { width: 74%; align-self: flex-end; }
+
+  .film { padding: 96px 0 104px; }
+  .film__inner { width: calc(100% - 32px); }
+  .film__head { margin-bottom: 36px; }
+  .film__circle { width: 64px; }
+  .film__caption { flex-direction: column; gap: 2px; }
+  .breath { height: 200px; }
+  .breath__line { height: 52px; }
+  .moments { padding-top: 48px; }
 
   .people__head { flex-direction: column; gap: 6px; }
   .people__mosaic { grid-template-columns: repeat(2, 1fr); column-gap: 14px; row-gap: 14px; }
@@ -1188,8 +1085,7 @@ em { font-style: italic; }
   .js .rv-soft .strip__frame { clip-path: none; transition: none; }
   .js .rise,
   .js .opening__frame,
-  .js .opening__caption > *,
-  .js .opening__edge { opacity: 1; transform: none; transition: none; }
+  .js .opening__caption > * { opacity: 1; transform: none; transition: none; }
   .story__shot,
   .story__shot img { transition: none; transform: none; }
   .opening__img,

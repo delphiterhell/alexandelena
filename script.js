@@ -2,6 +2,12 @@
 (() => {
   'use strict';
 
+  // YouTube non riproduce video incorporati su 127.0.0.1: in locale si passa a localhost
+  if (location.hostname === '127.0.0.1') {
+    location.replace(location.href.replace('//127.0.0.1', '//localhost'));
+    return;
+  }
+
   const root = document.documentElement;
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
   const phone = window.matchMedia('(max-width: 760px)');
@@ -76,12 +82,10 @@
      ------------------------------------------------------------------ */
   const shots = [...document.querySelectorAll('.story__shot')];
   const steps = [...document.querySelectorAll('.story__step')];
-  const counter = document.querySelector('.story__current');
 
   const setShot = i => {
     shots.forEach((s, n) => s.classList.toggle('is-active', n === i));
     steps.forEach((s, n) => s.classList.toggle('is-active', n === i));
-    if (counter) counter.textContent = pad(i + 1);
   };
   if ('IntersectionObserver' in window) {
     const storyIO = new IntersectionObserver(entries => {
@@ -165,6 +169,12 @@
   document.querySelectorAll('.film__player').forEach(player => {
     const play = player.querySelector('.film__play');
     play.addEventListener('click', () => {
+      // da file locale o da un indirizzo IP (es. 127.0.0.1) YouTube rifiuta l'incorporamento:
+      // si apre il video su YouTube
+      if (location.protocol === 'file:' || /^[\d.]+$|^\[/.test(location.hostname)) {
+        window.open(`https://www.youtube.com/watch?v=${encodeURIComponent(player.dataset.videoId)}`, '_blank', 'noopener');
+        return;
+      }
       const params = new URLSearchParams({ autoplay: 1, rel: 0, modestbranding: 1, playsinline: 1 });
       const frame = document.createElement('iframe');
       frame.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(player.dataset.videoId)}?${params}`;
@@ -175,7 +185,7 @@
       player.classList.add('is-playing');
       play.remove();
       frame.focus();
-    }, { once: true });
+    });
   });
 
   /* ------------------------------------------------------------------
@@ -192,9 +202,14 @@
   let seqCurrent = 0;
   let seqTarget = 0;
 
-  // anche su telefono la pellicola scorre con lo scorrimento verticale:
-  // lo swipe orizzontale non era intuitivo e su alcuni dispositivi non partiva
   function measureSequence() {
+    // su telefono la sezione è una sequenza verticale: nessun blocco dello scorrimento
+    if (phone.matches) {
+      seqDistance = seqCurrent = seqTarget = 0;
+      seqPin.style.height = '';
+      seqTrack.style.transform = '';
+      return;
+    }
     seqDistance = Math.max(0, seqTrack.scrollWidth - window.innerWidth);
     seqPin.style.height = `${window.innerHeight + seqDistance}px`;
   }
