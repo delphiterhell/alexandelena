@@ -19,7 +19,8 @@
   --soft: var(--muted);
   --hair: rgba(28, 26, 24, .15);
 
-  --serif: "Cormorant Garamond", "Cormorant", Garamond, "Times New Roman", serif;
+  --serif: "Sirivennela", "Cormorant Garamond", Garamond, "Times New Roman", serif;
+  --script: "Corinthia", "Cormorant Garamond", cursive;
   --sans: "Manrope", "Helvetica Neue", Arial, sans-serif;
 
   --edge: clamp(8px, 1vw, 16px);
@@ -54,6 +55,7 @@ body {
   font-size: 14px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  font-synthesis: none;              /* Sirivennela e Corinthia non hanno corsivo: niente obliquo finto */
   overflow-x: hidden;
   overflow-x: clip;
   font-variant-numeric: lining-nums;
@@ -111,11 +113,10 @@ em { font-style: italic; }
 }
 .chead__body { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; flex: 1; }
 .chead__title {
-  font-family: var(--serif);
-  font-style: italic;
-  font-weight: 300;
-  font-size: clamp(30px, 3.2vw, 50px);
-  line-height: 1;
+  font-family: var(--script);
+  font-weight: 400;
+  font-size: clamp(46px, 4.8vw, 76px);
+  line-height: .9;
 }
 
 /* --------------------------------------------------------------------------
@@ -266,10 +267,11 @@ em { font-style: italic; }
   z-index: 1;
   bottom: clamp(24px, 4.5vh, 48px);
   color: var(--ivory);
+  text-shadow: 0 1px 14px rgba(27, 25, 23, .45);
 }
 .opening__caption { left: clamp(22px, 3vw, 48px); }
-.opening__names { font-size: 12px; font-weight: 500; letter-spacing: .34em; }
-.opening__caption p { margin-top: 4px; opacity: .85; }
+.opening__names { font-size: clamp(15px, 1.3vw, 19px); font-weight: 500; letter-spacing: .3em; }
+.opening__caption p { margin-top: 6px; font-size: clamp(12px, 1vw, 14px); opacity: .9; }
 
 .js .opening__frame { opacity: 0; transition: opacity 1.8s var(--ease); }
 .js .opening__caption > * { opacity: 0; transform: translateY(10px); transition: opacity 1.4s var(--ease) .9s, transform 1.4s var(--ease) .9s; }
@@ -427,11 +429,12 @@ em { font-style: italic; }
 .sheet__head { margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--hair); }
 .sheet__foot { margin-top: 18px; padding-top: 12px; border-top: 1px solid var(--hair); }
 .sheet__title {
-  font-family: var(--serif);
-  font-weight: 300;
-  font-size: clamp(28px, 2.6vw, 40px);
-  line-height: 1;
+  font-family: var(--script);
+  font-weight: 400;
+  font-size: clamp(42px, 3.9vw, 60px);
+  line-height: .9;
 }
+.chead__title em, .film__title em, .people__title em, .sheet__title em { font-style: normal; }
 .sheet__note {
   font-family: var(--serif);
   font-style: italic;
@@ -589,11 +592,10 @@ em { font-style: italic; }
 }
 .film__label { margin-bottom: clamp(18px, 1.8vw, 26px); color: rgba(244, 239, 231, .56); }
 .film__title {
-  font-family: var(--serif);
-  font-weight: 300;
-  font-size: clamp(38px, 4.2vw, 64px);
-  line-height: 1.04;
-  letter-spacing: -.005em;
+  font-family: var(--script);
+  font-weight: 400;
+  font-size: clamp(56px, 6.2vw, 96px);
+  line-height: .95;
 }
 .film__sub {
   margin-top: clamp(10px, 1vw, 16px);
@@ -705,10 +707,10 @@ em { font-style: italic; }
   border-bottom: 1px solid var(--hair);
 }
 .people__title {
-  font-family: var(--serif);
-  font-weight: 300;
-  font-size: clamp(30px, 3.2vw, 50px);
-  line-height: 1;
+  font-family: var(--script);
+  font-weight: 400;
+  font-size: clamp(46px, 4.8vw, 76px);
+  line-height: .9;
 }
 
 .people__mosaic {
@@ -799,10 +801,12 @@ em { font-style: italic; }
 .voice__kicker { color: var(--soft); }
 .voice__title {
   margin-top: 10px;
-  font-family: var(--serif);
-  font-weight: 300;
-  font-size: clamp(26px, 2.4vw, 36px);
+  font-family: var(--script);
+  font-weight: 400;
+  font-size: clamp(40px, 3.6vw, 54px);
+  line-height: .95;
 }
+.voice__title em, .song__title em { font-style: normal; }
 .player {
   display: flex;
   align-items: center;
@@ -890,10 +894,10 @@ em { font-style: italic; }
 .song__play { margin-top: auto; font-size: 20px; line-height: 1; opacity: .7; }
 .song__title {
   margin-top: 20px;
-  font-family: var(--serif);
-  font-weight: 300;
-  font-size: clamp(32px, 3.2vw, 50px);
-  line-height: 1;
+  font-family: var(--script);
+  font-weight: 400;
+  font-size: clamp(46px, 4.8vw, 76px);
+  line-height: .9;
 }
 .song__artist { margin-top: 6px; font-family: var(--serif); font-style: italic; font-size: clamp(18px, 1.5vw, 22px); color: var(--soft); }
 .song__credits { grid-column: 8 / 11; }
