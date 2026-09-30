@@ -24,6 +24,7 @@
     sage:  { bg: [216, 216, 201], fg: [28, 26, 24],    soft: [106, 106, 94] },
     stone: { bg: [206, 195, 181], fg: [28, 26, 24],    soft: [100, 91, 81] },
     night: { bg: [27, 25, 23],    fg: [239, 232, 220], soft: [152, 143, 132] },
+    song:  { bg: [33, 29, 26],    fg: [239, 232, 220], soft: [160, 150, 138] },
     film:  { bg: [27, 25, 23],    fg: [244, 239, 231], soft: [160, 151, 140] },
   };
 
@@ -161,6 +162,103 @@
     });
     if (hasFile) audio.addEventListener('ended', () => { position = 0; setPlaying(false); render(); });
     render();
+  }
+
+  /* ------------------------------------------------------------------
+     La canzone: lettore minimo su il brano della sezione
+     Durata letta dai metadati del file; linea cliccabile e trascinabile.
+     ------------------------------------------------------------------ */
+  const song = document.querySelector('.song');
+  const track = document.getElementById('weddingSong');
+  if (song && track) {
+    const toggle = song.querySelector('.song__toggle');
+    const line = song.querySelector('.song__line');
+    const fill = song.querySelector('.song__fill');
+    const now = song.querySelector('.song__now');
+    const totals = song.querySelectorAll('.song__total, .song__duration');
+    const name = song.querySelector('.song__title').textContent.trim();
+    const fmt = s => `${pad(Math.floor(s / 60))}:${pad(Math.floor(s % 60))}`;
+    const length = () => (Number.isFinite(track.duration) ? track.duration : 0);
+
+    let raf = 0;
+    let dragging = false;
+
+    const render = (time = track.currentTime) => {
+      const d = length();
+      fill.style.transform = `scaleX(${d ? clamp(time / d) : 0})`;
+      now.textContent = fmt(time);
+      line.setAttribute('aria-valuenow', String(Math.floor(time)));
+      line.setAttribute('aria-valuetext', fmt(time));
+    };
+
+    const loop = () => {
+      if (!dragging) render();
+      raf = requestAnimationFrame(loop);
+    };
+
+    const onMeta = () => {
+      const d = length();
+      if (!d) return;
+      totals.forEach(el => { el.textContent = fmt(d); });
+      line.setAttribute('aria-valuemax', String(Math.floor(d)));
+      render();
+    };
+
+    const setState = playing => {
+      song.classList.toggle('is-playing', playing);
+      toggle.setAttribute('aria-label', `${playing ? 'Metti in pausa' : 'Riproduci'} ${name}`);
+      cancelAnimationFrame(raf);
+      if (playing) loop(); else render();
+    };
+
+    toggle.addEventListener('click', () => {
+      if (track.paused) track.play().catch(() => setState(false));
+      else track.pause();
+    });
+    track.addEventListener('play', () => setState(true));
+    track.addEventListener('pause', () => setState(false));
+    track.addEventListener('ended', () => { track.currentTime = 0; setState(false); });
+    track.addEventListener('loadedmetadata', onMeta);
+    track.addEventListener('durationchange', onMeta);
+    if (track.readyState >= 1) onMeta();
+
+    // clic e trascinamento sulla linea
+    const timeAt = e => {
+      const r = line.getBoundingClientRect();
+      return clamp((e.clientX - r.left) / r.width) * length();
+    };
+    line.addEventListener('pointerdown', e => {
+      if (!length()) return;
+      dragging = true;
+      line.setPointerCapture(e.pointerId);
+      render(timeAt(e));
+    });
+    line.addEventListener('pointermove', e => {
+      if (dragging) render(timeAt(e));
+    });
+    const release = e => {
+      if (!dragging) return;
+      dragging = false;
+      track.currentTime = timeAt(e);
+      render();
+    };
+    line.addEventListener('pointerup', release);
+    line.addEventListener('pointercancel', () => { dragging = false; render(); });
+
+    // tastiera: frecce ±5 s, Home/Fine
+    line.addEventListener('keydown', e => {
+      const d = length();
+      if (!d) return;
+      const steps = { ArrowRight: 5, ArrowUp: 5, ArrowLeft: -5, ArrowDown: -5 };
+      let t;
+      if (e.key in steps) t = track.currentTime + steps[e.key];
+      else if (e.key === 'Home') t = 0;
+      else if (e.key === 'End') t = d;
+      else return;
+      e.preventDefault();
+      track.currentTime = clamp(t, 0, d);
+      render();
+    });
   }
 
   /* ------------------------------------------------------------------

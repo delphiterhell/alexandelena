@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Corinthia&amp;family=Sirivennela&amp;family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&amp;family=Manrope:wght@400;500;600&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=26">
+  <link rel="stylesheet" href="style.css?v=48">
 </head>
 <body>
 
@@ -39,8 +39,8 @@
     <img class="opening__img" src="hero.jpg"
         alt="Elena e Alex si baciano accanto a un filare di vite, nella luce calda del pomeriggio" fetchpriority="high" decoding="async">
     <div class="opening__caption">
-      <h1 class="label opening__names">Elena &amp; Alex</h1>
-      <p class="label"><time datetime="2025-09-20">20 settembre 2025</time></p>
+      <h1 class="opening__names">Elena &amp; Alex</h1>
+      <p class="opening__date"><time datetime="2025-09-20">20 settembre 2025</time></p>
     </div>
   </div>
 </section>
@@ -54,7 +54,6 @@
 <section class="film grain" id="film" data-bg="film" aria-labelledby="film-title">
   <div class="film__inner">
     <header class="film__head">
-      <p class="label film__label">Il trailer</p>
       <h2 class="film__title rise" id="film-title">Un frammento di quel giorno</h2>
       <p class="film__sub rise">Elena &amp; Alex — 20.09.25</p>
     </header>
@@ -70,18 +69,14 @@
       </div>
       <figcaption class="film__caption">
         <span class="film__names">Elena &amp; Alex</span>
-        <span class="label film__meta">Wedding trailer · <time datetime="2025-09-20">20.09.2025</time></span>
       </figcaption>
     </figure>
   </div>
 </section>
 
-<!-- respiro: il nero del film torna all'avorio mentre si scorre -->
-<div class="breath" data-bg="paper" aria-hidden="true"><span class="breath__line"></span></div>
-
 <section class="moments grain" data-bg="paper" aria-label="I momenti della giornata">
   <div class="moments__head">
-    <p class="moments__intro rise">Dal mattino alla notte, <em>nell’ordine in cui è accaduto.</em></p>
+    <p class="moments__intro rise">Il filo della giornata.</p>
   </div>
   <nav aria-label="Capitoli">
     <ol class="index">
@@ -89,35 +84,35 @@
         <a class="index__link" href="#morning">
           <span class="index__line" aria-hidden="true"></span>
           <span class="index__name">Il mattino</span>
-          <span class="index__peek" aria-hidden="true"><img src="foto/indice-01.jpg" alt="" loading="lazy" decoding="async"></span>
+          <span class="index__peek" aria-hidden="true"><img src="ilmattino.jpg" alt="" loading="lazy" decoding="async"></span>
         </a>
       </li>
       <li class="index__item">
         <a class="index__link" href="#ceremony">
           <span class="index__line" aria-hidden="true"></span>
           <span class="index__name">La cerimonia</span>
-          <span class="index__peek" aria-hidden="true"><img src="foto/cerimonia-01.jpg" alt="" loading="lazy" decoding="async"></span>
+          <span class="index__peek" aria-hidden="true"><img src="lacerimonia.jpg" alt="" loading="lazy" decoding="async"></span>
         </a>
       </li>
       <li class="index__item">
         <a class="index__link" href="#just-married">
           <span class="index__line" aria-hidden="true"></span>
           <span class="index__name">Appena sposati</span>
-          <span class="index__peek" aria-hidden="true"><img src="foto/sposati-01.jpg" alt="" loading="lazy" decoding="async"></span>
+          <span class="index__peek" aria-hidden="true"><img src="appenasposati.jpg" alt="" loading="lazy" decoding="async"></span>
         </a>
       </li>
       <li class="index__item">
         <a class="index__link" href="#dinner">
           <span class="index__line" aria-hidden="true"></span>
           <span class="index__name">La cena</span>
-          <span class="index__peek" aria-hidden="true"><img src="foto/cena-06.jpg" alt="" loading="lazy" decoding="async"></span>
+          <span class="index__peek" aria-hidden="true"><img src="lacena.jpg" alt="" loading="lazy" decoding="async"></span>
         </a>
       </li>
       <li class="index__item">
         <a class="index__link" href="#after-dark">
           <span class="index__line" aria-hidden="true"></span>
           <span class="index__name">Dopo il tramonto</span>
-          <span class="index__peek" aria-hidden="true"><img src="foto/notte-01.jpg" alt="" loading="lazy" decoding="async"></span>
+          <span class="index__peek" aria-hidden="true"><img src="dopoiltramonto.jpg" alt="" loading="lazy" decoding="async"></span>
         </a>
       </li>
     </ol>
@@ -229,42 +224,35 @@
       
       <li class="story__step" data-step="0">
         <figure class="story__mobile"><img src="ospiticerimonia.jpg" alt="Le sedie sul prato, ancora vuote" loading="lazy" decoding="async"></figure>
-        <time class="label">15:24</time>
         <p>Arrivano i primi ospiti.</p>
       </li>
       <li class="story__step" data-step="1">
         <figure class="story__mobile"><img src="sposocerimonia.jpg" alt="Alex entra in chiesa sottobraccio alla madre" loading="lazy" decoding="async"></figure>
-        <time class="label">15:47</time>
-        <p>Lo sposo.</p>
+        <p>Alex con sua madre.</p>
       </li>
       <li class="story__step" data-step="2">
         <figure class="story__mobile"><img src="sposacerimonia.jpg" alt="Elena arriva alla chiesa" loading="lazy" decoding="async"></figure>
-        <time class="label">15:56</time>
-        <p>La sposa.</p>
+        <p>Elena entra in chiesa.</p>
       </li>
       <li class="story__step" data-step="3">
         <figure class="story__mobile"><img src="iniziocerimonia.jpg" alt="Il gazebo della cerimonia tra i fiori" loading="lazy" decoding="async"></figure>
-        <time class="label">16:03</time>
         <p>Inizia la cerimonia.</p>
       </li>
       <li class="story__step" data-step="4">
         <figure class="story__mobile"><img src="sposati.jpg" alt="Il primo bacio nel giardino" loading="lazy" decoding="async"></figure>
-        <time class="label">16:38</time>
-        <p>Sposati!</p>
+        <p>Fuori dalla chiesa, sposati!</p>
       </li>
     </ol>
   </div>
 </section>
 
 <!-- ============================================================
-     VOTO — pausa tipografica
+     DOPO IL SÌ — intermezzo fotografico tra cerimonia e sposi
      ============================================================ -->
-<section class="vow grain" data-bg="sage" aria-label="Un frammento della giornata">
-  <span class="vow__rule" aria-hidden="true"></span>
-  <blockquote class="vow__quote">
-    <p class="rise">“Qualunque cosa verrà,<br>la affronteremo insieme.”</p>
-    <footer class="label rise">— un frammento della giornata · 16:21</footer>
-  </blockquote>
+<section class="interlude" data-bg="paper" aria-label="Dopo il sì">
+  <figure class="interlude__frame rv">
+    <div class="ph"><img src="ae.jpg" alt="Due palloncini dorati a forma di A ed E nel cielo azzurro" loading="lazy" decoding="async"></div>
+  </figure>
 </section>
 
 <!-- ============================================================
@@ -280,7 +268,7 @@
   <div class="seq__pin">
     <div class="seq__sticky">
       <div class="seq__track">
-        <p class="seq__lead">Fuori, nel<br><em>pomeriggio.</em></p>
+        <p class="seq__lead">Un momento<br><em>per noi.</em></p>
         
         <figure class="seq__frame seq__frame--tall">
           <div class="ph"><img src="sposati1.jpg" alt="Il bacio tra gli ospiti che lanciano il riso" loading="lazy" decoding="async"></div>
@@ -360,25 +348,13 @@
       <div class="ph"><img src="tavola1.jpg" alt="La tavola vista dall’alto, verde e candele" loading="lazy" decoding="async"></div>
     </figure>
 
-    <!-- MENÙ: sostituire .paper--menu con la scansione del menù -->
-    <div class="obj obj--menu" style="--rot:2deg" data-speed="0.04">
-      <div class="paper paper--menu" role="img" aria-label="Menù della cena (segnaposto per la scansione)">
-        <span class="label">Menù</span>
-        <span class="paper__lines" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
-        <span class="paper__hint">scansione del menù</span>
-      </div>
-    </div>
-
     <figure class="obj obj--flowers rv" style="--rot:1deg">
       <div class="ph"><img src="cena01.jpg" alt="Fiori rosa e bianchi al centro della tavola" loading="lazy" decoding="async"></div>
     </figure>
 
-    <!-- SEGNAPOSTO DEL TAVOLO: sostituire con la scansione del place card -->
-    <div class="obj obj--place" style="--rot:-3deg" data-speed="-0.04">
-      <div class="paper paper--place" role="img" aria-label="Segnaposto del tavolo 04">
-        <span class="label">Tavolo 04</span>
-      </div>
-    </div>
+    <figure class="obj obj--menu rise">
+      <img src="menu.png" alt="Il menù della cena e il biglietto «Baciami baciami»" width="1536" height="1024" loading="lazy" decoding="async">
+    </figure>
 
     <figure class="obj obj--food mount rv" style="--rot:1.5deg">
       <div class="ph"><img src="cena02.jpg" alt="Un piatto servito durante la cena" loading="lazy" decoding="async"></div>
@@ -392,13 +368,9 @@
       <div class="ph"><img src="cena04.jpg" alt="Un ospite in piedi con il calice alzato durante i discorsi" loading="lazy" decoding="async"></div>
     </figure>
 
-    <!-- NOTA SCRITTA A MANO: sostituire con la scansione di un biglietto degli ospiti -->
-    <div class="obj obj--note" style="--rot:2.5deg" data-speed="0.06">
-      <div class="paper paper--note" role="img" aria-label="Nota scritta a mano da un ospite (segnaposto)">
-        <span class="paper__lines paper__lines--hand" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
-        <span class="paper__hint">biglietto scritto a mano</span>
-      </div>
-    </div>
+    <figure class="obj obj--sign rv" style="--rot:1.5deg">
+      <div class="ph"><img src="bellissima.jpg" alt="Il biglietto «Bellissimissima» sul tavolo, tra calici e fiori" loading="lazy" decoding="async"></div>
+    </figure>
   </div>
 
   <figure class="table__wide rv">
@@ -411,8 +383,7 @@
      ============================================================ -->
 <section class="voice grain" data-bg="stone" aria-labelledby="voice-title">
   <div class="voice__inner">
-    <p class="label voice__kicker" id="voice-title">Una voce dalla giornata</p>
-    <p class="voice__title">Un discorso, <em>registrato a tavola</em></p>
+    <p class="voice__title" id="voice-title">Un discorso, <em>registrato a tavola</em></p>
 
     <!-- AUDIO: inserire qui il file, es. <audio src="audio/discorso.mp3" preload="metadata"></audio>
          Senza file, il player simula la riproduzione per mostrare l'interazione. -->
@@ -472,18 +443,30 @@
 <!-- ============================================================
      LA CANZONE — note di copertina
      ============================================================ -->
-<section class="song" data-bg="night" aria-labelledby="song-title">
-  <div class="song__sleeve rise">
-    <p class="label" id="song-title">La canzone che ricordiamo</p>
-    <p class="song__play" aria-hidden="true">▷</p>
-    <!-- CANZONE: sostituire titolo e artista -->
-    <p class="song__title">Titolo della canzone</p>
-    <p class="song__artist">Artista</p>
+<section class="song grain" data-bg="song" aria-labelledby="song-title">
+  <figure class="song__photo rv">
+    <div class="ph"><img src="notte11.jpg" alt="Elena e Alex durante il primo ballo, fronte contro fronte" loading="lazy" decoding="async"></div>
+  </figure>
+
+  <div class="song__body rise">
+    <div class="song__head">
+      <p class="label" id="song-title">La nostra canzone</p>
+    </div>
+    <p class="song__title">Can’t Help Falling in Love</p>
+    <p class="song__artist">Kina Grannis</p>
+
+    <audio id="weddingSong" src="cant-help-falling-in-love.mp3" preload="metadata"></audio>
+    <div class="song__player">
+      <button class="song__toggle" type="button" aria-label="Riproduci Can’t Help Falling in Love" aria-controls="weddingSong">
+        <span class="song__icon" aria-hidden="true"></span>
+      </button>
+      <span class="song__time song__now">00:00</span>
+      <div class="song__line" role="slider" tabindex="0" aria-label="Posizione nel brano" aria-valuemin="0" aria-valuemax="0" aria-valuenow="0" aria-valuetext="00:00">
+        <span class="song__fill"></span>
+      </div>
+      <span class="song__time song__total">--:--</span>
+    </div>
   </div>
-  <dl class="song__credits rise">
-    <div><dt class="label">Suonata</dt><dd>Primo ballo</dd></div>
-    <div><dt class="label">Durata</dt><dd>—:—</dd></div>
-  </dl>
 </section>
 
 <!-- ============================================================
@@ -501,7 +484,7 @@
           <div class="frame__img"><img src="notte20.jpg" alt="" loading="lazy" decoding="async"></div>
         </figure>
         <figure class="frame">
-          <div class="frame__img"><img src="notte11.jpg" alt="" loading="lazy" decoding="async"></div>
+          <div class="frame__img"><img src="notte22.jpg" alt="" loading="lazy" decoding="async"></div>
         </figure>
         <figure class="frame">
           <div class="frame__img"><img src="notte12.jpg" alt="" loading="lazy" decoding="async"></div>
@@ -534,13 +517,13 @@
   <figure class="fin__photo mount rv">
     <div class="ph"><img src="fine.jpg" alt="Elena e Alex camminano insieme su una spiaggia, in bianco e nero" loading="lazy" decoding="async"></div>
   </figure>
-  <h2 class="label fin__names rise" id="fin-title">Elena &amp; Alex</h2>
+  <h2 class="fin__names rise" id="fin-title">Elena &amp; Alex</h2>
   <p class="fin__date rise"><time datetime="2025-09-20">20 · 09 · 2025</time></p>
   <a class="label fin__top" href="#top">Torna all’inizio <span aria-hidden="true">↑</span></a>
 </section>
 
 </main>
 
-<script src="script.js?v=14" defer></script>
+<script src="script.js?v=17" defer></script>
 </body>
 </html>
